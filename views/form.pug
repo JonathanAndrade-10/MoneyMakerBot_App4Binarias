@@ -61,4 +61,39 @@ html(lang='en')
           input#goalPrice.form-control(type='text' aria-describedby='emailHelp' placeholder='Enter Goal Price (3 digits)' name='goalPrice')
         
         button.btn.btn-primary(type='submit') Submit
+      br
+      form(action='/' method='POST')
+        .form-group
+          label(for='symbolRemove') Remove Alert
+          select#symbolRemove.form-control(name='symbolRemove')
+            option All
+            option AUDCAD
+            option AUDCHF
+            option AUDJPY
+            option AUDNZD
+            option AUDUSD
+            option CADCHF
+            option CADJPY
+            option CHFJPY
+            option EURAUD
+            option EURCAD
+            option EURCHF
+            option EURGBP
+            option EURJPY
+            option EURNZD
+            option EURUSD
+            option GBPAUD
+            option GBPCAD
+            option GBPCHF
+            option GBPJPY
+            option GBPNZD
+            option GBPUSD
+            option NZDCAD
+            option NZDCHF
+            option NZDJPY
+            option NZDUSD
+            option USDCAD
+            option USDCHF
+        button.btn.btn-danger(type='submit') Remove alert(s)
+
       

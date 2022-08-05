@@ -19,17 +19,17 @@ const configGetToken = {
 
 const urlAddQueueItem = process.env.ORCH_QUEUE_URL
 
-const bodyAddQueueItem = { 
+const bodyAddQueueItemBase = { 
   "itemData": { 
       "Priority": process.env.ORCH_PRIORITY, 
       "Name": process.env.ORCH_QUEUE_NAME, 
       "SpecificContent": { 
-          "Symbol@odata.type": "#String", 
-          "Symbol": "%SYMBOL%", 
-          "AlcistaBajista": "%ALCISTA_BAJISTA%", 
-          "Duration": "%DURATION%", 
-          "GoalPrice": "%GOAL_PRICE%",
-          "CreateRemoveAlert": "Create"
+          "CreateRemoveAlert@odata.type": "#String" 
+          // "Symbol": "%SYMBOL%", 
+          // "AlcistaBajista": "%ALCISTA_BAJISTA%", 
+          // "Duration": "%DURATION%", 
+          // "GoalPrice": "%GOAL_PRICE%",
+          // "CreateRemoveAlert": "%CREATE_REMOVE_ALERT%"
       } 
   } 
 
@@ -44,15 +44,29 @@ const configAddQueueItem = {
 
 exports.showForm = (req, res) => {
   res.status(200).render('form')
-  // (`${__dirname}/../views/form.html`);
+  
 };
 
 exports.createQueueItem = (req, res) => {
-  
-  bodyAddQueueItem.itemData.SpecificContent.Symbol = req.body.symbol;
-  bodyAddQueueItem.itemData.SpecificContent.AlcistaBajista = req.body.alcistaBajista;
-  bodyAddQueueItem.itemData.SpecificContent.Duration = req.body.duration;
-  bodyAddQueueItem.itemData.SpecificContent.GoalPrice = req.body.goalPrice;
+  var bodyAddQueueItem = JSON.parse(JSON.stringify(bodyAddQueueItemBase));
+
+  if(!req.body.symbolRemove)   // It is a create request
+  {
+    bodyAddQueueItem.itemData.SpecificContent['Symbol'] = req.body.symbol;
+    bodyAddQueueItem.itemData.SpecificContent['AlcistaBajista'] = req.body.alcistaBajista;
+    bodyAddQueueItem.itemData.SpecificContent['Duration'] = req.body.duration;
+    bodyAddQueueItem.itemData.SpecificContent['GoalPrice'] = req.body.goalPrice;
+    bodyAddQueueItem.itemData.SpecificContent['CreateRemoveAlert'] = 'Create';
+  }
+  else if (req.body.symbolRemove === 'All') // It is a remove all request
+  {
+    bodyAddQueueItem.itemData.SpecificContent['CreateRemoveAlert'] = 'RemoveAll';
+  }
+  else    // It is a remove one alert request
+  {
+    bodyAddQueueItem.itemData.SpecificContent['Symbol'] = req.body.symbolRemove;
+    bodyAddQueueItem.itemData.SpecificContent['CreateRemoveAlert'] = 'Remove';
+  }
 
   axios.post(urlGetToken, bodyGetToken, configGetToken)
     .then( response => {
