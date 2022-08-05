@@ -1,0 +1,64 @@
+
+doctype html
+html(lang='en')
+  head
+    title Binarias
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+  body
+    .container
+      h1 Binarias
+      form(action='/' method='POST')
+        .form-group
+          label(for='symbol') Symbol
+          select#symbol.form-control(name='symbol')
+            option AUDCAD
+            option AUDCHF
+            option AUDJPY
+            option AUDNZD
+            option AUDUSD
+            option CADCHF
+            option CADJPY
+            option CHFJPY
+            option EURAUD
+            option EURCAD
+            option EURCHF
+            option EURGBP
+            option EURJPY
+            option EURNZD
+            option EURUSD
+            option GBPAUD
+            option GBPCAD
+            option GBPCHF
+            option GBPJPY
+            option GBPNZD
+            option GBPUSD
+            option NZDCAD
+            option NZDCHF
+            option NZDJPY
+            option NZDUSD
+            option USDCAD
+            option USDCHF
+          //- input#symbol.form-control(type='text' aria-describedby='emailHelp' placeholder='Enter Symbol' name='symbol')
+        .form-group
+          label(for='alcistaBajista') Alcista/Bajista
+          select#alcistaBajista.form-control(name='alcistaBajista')
+            option Alcista
+            option Bajista
+          //- input#alcistaBajista.form-control(type='text' aria-describedby='emailHelp' placeholder='Enter Alcista/Bajista' name='alcista_bajista')
+        .form-group
+          label(for='duration') Duration (min)
+          select#duration.form-control(name='duration')
+            option 5
+            option 4
+            option 3
+            option 2
+            option 1
+          //- input#duration.form-control(type='text' aria-describedby='emailHelp' placeholder='Enter Duration (1/2/3/4/5)' name='duration')
+        .form-group
+          label(for='goalPrice') Goal Price
+          input#goalPrice.form-control(type='text' aria-describedby='emailHelp' placeholder='Enter Goal Price (3 digits)' name='goalPrice')
+        
+        button.btn.btn-primary(type='submit') Submit
+      
