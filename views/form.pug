@@ -2,13 +2,13 @@
 doctype html
 html(lang='en')
   head
-    title Binarias
+    title Binary Options
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1')
     link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
   body
     .container
-      h1 Binarias
+      h1 Binary Options
       form(action='/' method='POST')
         .form-group
           label(for='symbol') Symbol
@@ -42,10 +42,10 @@ html(lang='en')
             option USDCHF
           //- input#symbol.form-control(type='text' aria-describedby='emailHelp' placeholder='Enter Symbol' name='symbol')
         .form-group
-          label(for='alcistaBajista') Alcista/Bajista
+          label(for='alcistaBajista') Call/Put
           select#alcistaBajista.form-control(name='alcistaBajista')
-            option Alcista
-            option Bajista
+            option Call
+            option Put
           //- input#alcistaBajista.form-control(type='text' aria-describedby='emailHelp' placeholder='Enter Alcista/Bajista' name='alcista_bajista')
         .form-group
           label(for='duration') Duration (min)
