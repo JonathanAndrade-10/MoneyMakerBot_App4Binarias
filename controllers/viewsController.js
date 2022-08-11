@@ -76,18 +76,19 @@ exports.createQueueItem = (req, res) => {
       axios.post(urlAddQueueItem, bodyAddQueueItem, configAddQueueItem)
         .then( response => {
           console.log('Queue item created')
-
           res.status(200).render('itemCreated')
-
         })
         .catch( err => {
-          console.log(err);
+          console.log(err.message);
+          res.status(400).json({
+            status: 'fail',
+            message: err.message
+          });
         })
 
     })
     .catch( err => {
       console.log(err.message);
-
       res.status(400).json({
         status: 'fail',
         message: err.message
